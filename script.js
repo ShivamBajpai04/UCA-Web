@@ -16,13 +16,13 @@ let individualCharts = {};
 async function init() {
   try {
     // Load custom coins from local storage
-    const customCoins = JSON.parse(localStorage.getItem('customCoins')) || [];
-    
+    const customCoins = JSON.parse(localStorage.getItem("customCoins")) || [];
+
     // Add default cryptos
     for (const crypto of CRYPTO_LIST) {
       await addCrypto(crypto.name, crypto.symbol, crypto.color);
     }
-    
+
     // Add custom coins
     for (const crypto of customCoins) {
       await addCrypto(crypto.name, crypto.symbol, crypto.color);
@@ -73,9 +73,9 @@ async function addCustomCoin() {
     try {
       await addCrypto(name, symbol, color);
       // Save custom coin to local storage
-      const customCoins = JSON.parse(localStorage.getItem('customCoins')) || [];
+      const customCoins = JSON.parse(localStorage.getItem("customCoins")) || [];
       customCoins.push({ name, symbol, color });
-      localStorage.setItem('customCoins', JSON.stringify(customCoins));
+      localStorage.setItem("customCoins", JSON.stringify(customCoins));
       // Clear input fields after adding
       document.getElementById("customCoinName").value = "";
       document.getElementById("customCoinSymbol").value = "";
@@ -100,11 +100,11 @@ function deleteCrypto(symbol) {
     document.getElementById(`chart-${symbol}`).remove();
   }
   updateCharts();
-  
+
   // Remove from local storage if it's a custom coin
-  const customCoins = JSON.parse(localStorage.getItem('customCoins')) || [];
-  const updatedCustomCoins = customCoins.filter(c => c.symbol !== symbol);
-  localStorage.setItem('customCoins', JSON.stringify(updatedCustomCoins));
+  const customCoins = JSON.parse(localStorage.getItem("customCoins")) || [];
+  const updatedCustomCoins = customCoins.filter((c) => c.symbol !== symbol);
+  localStorage.setItem("customCoins", JSON.stringify(updatedCustomCoins));
 }
 
 // Update crypto data
